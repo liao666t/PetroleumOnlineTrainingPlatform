@@ -1,0 +1,41 @@
+server:
+    port: 8080
+
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/amazing_teaching?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: 123456
+
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: Asia/Shanghai
+
+    servlet:
+        multipart:
+            max-file-size: 100MB
+            max-request-size: 100MB
+
+mybatis-plus:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: com.oilplatform.modules.*.entity
+    configuration:
+        map-underscore-to-camel-case: true
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    global-config:
+        db-config:
+            id-type: auto
+            logic-delete-field: deleted
+            logic-delete-value: 1
+            logic-not-delete-value: 0
+
+ai:
+    api:
+        key: your-api-key-here
+        url: https://api.openai.com/v1/chat/completions
+
+logging:
+    level:
+        com.oilplatform: debug
+        org.springframework: info
