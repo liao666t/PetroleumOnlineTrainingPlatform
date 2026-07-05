@@ -32,9 +32,8 @@ mybatis-plus:
 
 ai:
     api:
-        key: your-api-key-here
-        url: https://api.openai.com/v1/chat/completions
-
+        key: sk-572c7cea302342779b1b300019e666ca          # 替换为你的 DeepSeek API Key
+        url: https://api.deepseek.com/v1/chat/completions
 logging:
     level:
         com.oilplatform: debug

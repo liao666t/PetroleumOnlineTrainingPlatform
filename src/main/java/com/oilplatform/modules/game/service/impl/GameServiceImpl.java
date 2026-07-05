@@ -1,5 +1,6 @@
 package com.oilplatform.modules.game.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.oilplatform.common.exception.BusinessException;
 import com.oilplatform.common.result.Result;
 import com.oilplatform.modules.game.entity.GameLevel;
@@ -116,6 +117,11 @@ public class GameServiceImpl implements GameService {
         if (level == null) {
             throw new BusinessException("关卡不存在");
         }
+        // 先删除该关卡下的所有用户答题记录
+        LambdaQueryWrapper<UserGameRecord> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserGameRecord::getLevelId, levelId);
+        userGameRecordMapper.delete(wrapper);
+        // 再删除关卡本身
         gameMapper.deleteById(levelId);
         return Result.success("关卡删除成功");
     }
